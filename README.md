@@ -1,4 +1,4 @@
-# React + Vite
+# Made using Vite/JS/openWeather API
 
 Website Link:  https://weather-app-psi-blush-66.vercel.app/
 
