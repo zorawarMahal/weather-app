@@ -62,7 +62,15 @@ const Weather = () => {
 
   return (
     <div>
-      <main>
+      <main
+        className={
+          typeof weather.main != "undefined"
+            ? weather.main.temp > 16
+              ? "app-warm"
+              : "app"
+            : "app"
+        }
+      >
         <div className="search-box">
           <input
             type="text"
@@ -76,21 +84,22 @@ const Weather = () => {
             Search
           </button>
         </div>
-        {(typeof weather.main != 'undefined') ? 
-        (
-            <div>
-          <div className="location-box">
-            <div className="location">
-              {weather.name}, {weather.sys && weather.sys.country}
-              <div className="date">{dateBuilder(new Date())}</div>
+        {typeof weather.main != "undefined" ? (
+          <div className="info">
+            <div className="location-box">
+              <div className="location">
+                {weather.name}, {weather.sys && weather.sys.country}
+                <div className="date">{dateBuilder(new Date())}</div>
+                <div className="weather-box">
+                  {Math.round(weather.main && weather.main.temp)}°C
+                  <div className="weather">{weather.weather[0].main}</div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="weather-box">
-            {Math.round(weather.main && weather.main.temp)}°C
-          </div>
-        </div>
-        ) :
-        ('')}
+        ) : (
+          ""
+        )}
       </main>
     </div>
   );
